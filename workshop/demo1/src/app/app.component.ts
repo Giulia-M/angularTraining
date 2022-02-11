@@ -9,7 +9,15 @@ import { User } from './model/user';
     <pre>{{ users | json }}</pre> -->
 
     <div class="container">
-      <form class="card card-body mt-3" #f="ngForm" (submit)="saveHandler(f)">
+      <form
+        class="card card-body mt-2"
+        #f="ngForm"
+        (submit)="saveHandler(f)"
+        [ngClass]="{
+          male: f.value.gender === 'M',
+          female: f.value.gender === 'F'
+        }"
+      >
         <input
           type="text"
           [ngModel]
@@ -17,15 +25,33 @@ import { User } from './model/user';
           placeholder="Add user name"
           class="form-control"
           required
+          #labelInput="ngModel"
+          [ngClass]="{ 'is-invalid': labelInput.invalid && f.dirty }"
         />
 
-        <select [ngModel] name="gender" class="form-control" required>
+        <select
+          [ngModel]
+          name="gender"
+          class="form-control"
+          required
+          #genderInput="ngModel"
+          [ngClass]="{ 'is-invalid': genderInput.invalid && f.dirty }"
+        >
           <option [ngValue]="null">Select option</option>
           <option value="M">M</option>
           <option value="F">F</option>
         </select>
 
-        <button class="btn" [disabled]="f.invalid">Save</button>
+        <button
+          class="btn"
+          [disabled]="f.invalid"
+          [ngClass]="{
+            'btn-dark': f.valid,
+            'btn-warning': f.invalid
+          }"
+        >
+          Save
+        </button>
       </form>
 
       <hr />
@@ -67,6 +93,9 @@ import { User } from './model/user';
       }
       .female {
         background-color: pink;
+      }
+      .card {
+        transition: all 0.5s;
       }
     `,
   ],
