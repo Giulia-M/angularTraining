@@ -11,10 +11,11 @@ import { UsersService } from './services/users.service';
     <pre>{{ users | json }}</pre> -->
 
     <div class="container">
+      <div class="alert alert-danger" *ngIf="error">Server side error</div>
       <form
         class="card card-body mt-2"
         #f="ngForm"
-        (submit)="usersService.saveHandler(f)"
+        (submit)="saveHandler(f)"
         [ngClass]="{
           male: f.value.gender === 'M',
           female: f.value.gender === 'F'
@@ -110,7 +111,18 @@ export class AppComponent {
   //   { id: 3, label: 'Silvia', gender: 'F', age: 70 },
   // ];
 
+  error: boolean;
   constructor(public usersService: UsersService) {
     usersService.init();
+  }
+
+  saveHandler(form: NgForm) {
+    this.usersService
+      .saveHandler(form.value as User)
+      .then(() => {
+        form.reset();
+        this.error = false;
+      })
+      .catch(() => (this.error = true));
   }
 }

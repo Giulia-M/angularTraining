@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
 import { User } from '../model/user';
 
 @Injectable({
@@ -23,6 +24,9 @@ export class UsersService {
       this.users = this.users.filter((u) => u.id !== userToRemove.id);
     });
   }
+
+  //services should have no references to the UI.
+  /*
   saveHandler(f: NgForm) {
     const user = f.value as User;
 
@@ -33,5 +37,18 @@ export class UsersService {
     // add a fake ID
     // user.id = Date.now();
     // this.users = [...this.users, user];
+  }
+  */
+
+  saveHandler(user: User): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post<User>(`${this.URL}/users/`, user).subscribe(
+        (dbUser) => {
+          this.users = [...this.users, dbUser];
+          resolve();
+        },
+        () => reject()
+      );
+    });
   }
 }

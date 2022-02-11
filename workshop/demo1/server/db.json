@@ -37,6 +37,11 @@
       "label": "Ivan",
       "gender": "M",
       "id": 7
+    },
+    {
+      "label": "Anna",
+      "gender": "F",
+      "id": 8
     }
   ]
 }
