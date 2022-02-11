@@ -27,6 +27,16 @@
       "label": "Gabriele",
       "gender": "M",
       "id": 5
+    },
+    {
+      "label": "Isabella",
+      "gender": "F",
+      "id": 6
+    },
+    {
+      "label": "Ivan",
+      "gender": "M",
+      "id": 7
     }
   ]
 }

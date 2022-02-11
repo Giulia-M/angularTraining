@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from './model/user';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { User } from './model/user';
       <form
         class="card card-body mt-2"
         #f="ngForm"
-        (submit)="saveHandler(f)"
+        (submit)="usersService.saveHandler(f)"
         [ngClass]="{
           male: f.value.gender === 'M',
           female: f.value.gender === 'F'
@@ -63,7 +64,7 @@ import { User } from './model/user';
       <div class="container">
         <h4>Users</h4>
         <div
-          *ngFor="let u of users"
+          *ngFor="let u of usersService.users"
           class="list-group-item"
           [ngClass]="{
             male: u.gender === 'M',
@@ -80,7 +81,7 @@ import { User } from './model/user';
           {{ u.label }}
           <i
             class="fa fa-trash fa-2x pull-right"
-            (click)="deleteHandler(u)"
+            (click)="usersService.deleteHandler(u)"
           ></i>
         </div>
       </div>
@@ -109,31 +110,7 @@ export class AppComponent {
   //   { id: 3, label: 'Silvia', gender: 'F', age: 70 },
   // ];
 
-  users: User[];
-  URL = 'http://localhost:3000';
-  constructor(private http: HttpClient) {
-    this.init();
-  }
-  init() {
-    this.http.get<User[]>(this.URL + '/users').subscribe((res) => {
-      this.users = res;
-    });
-  }
-
-  deleteHandler(userToRemove: User) {
-    this.http.delete(`${this.URL}/users/${userToRemove.id}`).subscribe(() => {
-      this.users = this.users.filter((u) => u.id !== userToRemove.id);
-    });
-  }
-  saveHandler(f: NgForm) {
-    const user = f.value as User;
-
-    this.http.post<User>(`${this.URL}/users/`, user).subscribe((dbUser) => {
-      this.users = [...this.users, dbUser];
-      f.reset();
-    });
-    // add a fake ID
-    // user.id = Date.now();
-    // this.users = [...this.users, user];
+  constructor(public usersService: UsersService) {
+    usersService.init();
   }
 }
