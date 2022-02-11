@@ -3,4 +3,5 @@ export interface User {
   label: string;
   gender: string;
   age: number;
+  creationDate: number;
 }

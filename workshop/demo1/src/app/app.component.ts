@@ -22,6 +22,7 @@ import { UsersService } from './services/users.service';
         }"
       >
         <input
+          minlength="3"
           type="text"
           [ngModel]
           name="label"
@@ -79,7 +80,8 @@ import { UsersService } from './services/users.service';
               'fa-venus female': u.gender === 'F'
             }"
           ></i>
-          {{ u.label }}
+          {{ u.label }} -
+          <span>{{ creationDate | date }}</span>
           <i
             class="fa fa-trash fa-2x pull-right"
             (click)="usersService.deleteHandler(u)"
@@ -112,6 +114,8 @@ export class AppComponent {
   // ];
 
   error: boolean;
+  creationDate = new Date();
+
   constructor(public usersService: UsersService) {
     usersService.init();
   }
