@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../model/user';
 @Component({
   selector: 'ava-catalog',
-  template: ` <p>catalog works!</p> `,
+  template: ` <p>catalog works!</p>
+    <ava-card *ngFor="let user of users" [title]="user.name"></ava-card>
+    <ava-users-list [data]="users"></ava-users-list>`,
   styles: [],
 })
 export class CatalogComponent implements OnInit {
@@ -18,4 +20,5 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  deleteUser(userToDelete: User) {}
 }

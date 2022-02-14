@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     <button routerLink="uikit1">uikit1</button>
     <button routerLink="catalog">catalog</button>
     <button routerLink="login">login</button>
+    <button routerLink="uikit2" routerLinkActive="active">uiki2</button>
   `,
   styles: [],
 })

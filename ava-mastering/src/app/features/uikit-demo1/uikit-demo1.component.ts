@@ -5,18 +5,26 @@ import { NavigationEnd, Router } from '@angular/router';
   selector: 'ava-uikit-demo1',
   template: `
     <p>uikit-demo1 works!</p>
-    <ava-card title="one" icon="fa fa-times" body="bla"></ava-card>
+    <ava-card
+      title="one"
+      icon="fa fa-times"
+      body="bla"
+      footerButtonLabel="go to ..."
+    ></ava-card>
     <ava-card
       title="link"
       icon="fa fa-linkedin"
       body="bla"
-      url="http://www.linkedin.com"
+      (iconClick)="openUrl('http://www.linkedin.com')"
+      (footer)="openUrl('http://www.facebook.com')"
+      footerButtonLabel="go to fb"
     ></ava-card>
     <ava-card
       title="fb"
       body="..."
       icon="fa fa-facebook"
       (iconClick)="openUrl('http://www.facebook.com')"
+      footerButtonLabel="go to .."
     ></ava-card>
 
     <ava-card

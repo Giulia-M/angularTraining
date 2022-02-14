@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
         <div class="pull-right">
           <i [class]="icon" (click)="doAction()"></i>
         </div>
-        <button (click)="this.footer.emit()">{{ footerButtonLabel }}</button>
+        <button (click)="footer.emit()">{{ footerButtonLabel }}</button>
       </div>
       <div class="card-body">{{ body }}</div>
     </div>

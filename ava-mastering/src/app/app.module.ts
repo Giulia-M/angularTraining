@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './shared/components/card/card.component';
+import { UsersListComponent } from './features/catalog/components/users-list.component';
+import { UsersFormComponent } from './features/catalog/components/users-form.component';
+import { UikitDemo2Component } from './features/uikit-demo2/uikit-demo2.component';
+import { TabBarComponent } from './shared/components/tab-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { CardComponent } from './shared/components/card/card.component';
     NavbarComponent,
     HomeComponent,
     CardComponent,
+    UsersListComponent,
+    UsersFormComponent,
+    UikitDemo2Component,
+    TabBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +39,8 @@ import { CardComponent } from './shared/components/card/card.component';
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'uikit1', component: UikitDemo1Component },
+      { path: 'uikit2', component: UikitDemo2Component },
+
       { path: 'catalog', component: CatalogComponent },
       { path: 'home', component: HomeComponent },
     ]),
