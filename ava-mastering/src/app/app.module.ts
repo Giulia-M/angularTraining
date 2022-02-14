@@ -43,6 +43,7 @@ import { TabBarComponent } from './shared/components/tab-bar.component';
 
       { path: 'catalog', component: CatalogComponent },
       { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]),
   ],
   providers: [],
