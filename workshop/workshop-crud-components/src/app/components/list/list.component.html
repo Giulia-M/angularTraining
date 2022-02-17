@@ -8,4 +8,5 @@
     [ngClass]="{ 'fa-mars': u.gender === 'M', 'fa-venus': u.gender === 'F' }"
   ></i>
   {{ u.label }}
+  <i class="fa fa-trash fa-2x pull-right" (click)="delete.emit(u)"></i>
 </div>

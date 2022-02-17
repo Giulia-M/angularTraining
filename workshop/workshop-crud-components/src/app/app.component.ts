@@ -6,7 +6,7 @@ import { User } from './model/user';
   template: ` <div class="container mt-2">
     <!-- <h4>users</h4>
     <pre>{{ users | json }}</pre> -->
-    <app-list [items]="users"></app-list>
+    <app-list [items]="users" (delete)="deleteUser($event)"></app-list>
   </div>`,
   styles: [],
 })
@@ -16,4 +16,8 @@ export class AppComponent {
     { id: 2, label: 'Lorenzo', gender: 'M', age: 37 },
     { id: 3, label: 'Silvia', gender: 'F', age: 70 },
   ];
+  deleteUser(user: User) {
+    const indexToRemove = this.users.findIndex((u) => u.id === user.id);
+    this.users.splice(indexToRemove, 1);
+  }
 }

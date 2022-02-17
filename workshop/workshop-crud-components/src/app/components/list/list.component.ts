@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { User } from 'src/app/model/user';
 
 @Component({
@@ -11,4 +12,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {}
   @Input() items: User[] | undefined;
+
+  @Output() delete: EventEmitter<User> = new EventEmitter<User>();
 }
