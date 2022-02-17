@@ -1,0 +1,11 @@
+<div
+  *ngFor="let u of items"
+  class="list-group-item"
+  [ngClass]="{ male: u.gender === 'M', female: u.gender === 'F' }"
+>
+  <i
+    class="fa fa-3x"
+    [ngClass]="{ 'fa-mars': u.gender === 'M', 'fa-venus': u.gender === 'F' }"
+  ></i>
+  {{ u.label }}
+</div>
